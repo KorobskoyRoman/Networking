@@ -21,6 +21,7 @@
 		9C78970F2748581C00BE9C99 /* MainCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C78970E2748581C00BE9C99 /* MainCollectionViewController.swift */; };
 		9C7897112748583100BE9C99 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7897102748583100BE9C99 /* CollectionViewCell.swift */; };
 		9C7897142748610600BE9C99 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7897132748610600BE9C99 /* NetworkManager.swift */; };
+		9C789716274A887A00BE9C99 /* ImageProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C789715274A887A00BE9C99 /* ImageProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		9C78970E2748581C00BE9C99 /* MainCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewController.swift; sourceTree = "<group>"; };
 		9C7897102748583100BE9C99 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		9C7897132748610600BE9C99 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		9C789715274A887A00BE9C99 /* ImageProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProperties.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 			children = (
 				9C7897072748362B00BE9C99 /* Course.swift */,
 				9C78970927483B9000BE9C99 /* WebsiteDescription.swift */,
+				9C789715274A887A00BE9C99 /* ImageProperties.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 				9C78970D274840C200BE9C99 /* TableViewCell.swift in Sources */,
 				9C7897062748341F00BE9C99 /* WebViewController.swift in Sources */,
 				9C7896EA274818F900BE9C99 /* AppDelegate.swift in Sources */,
+				9C789716274A887A00BE9C99 /* ImageProperties.swift in Sources */,
 				9C7896EC274818F900BE9C99 /* SceneDelegate.swift in Sources */,
 				9C7897032748333400BE9C99 /* CoursesViewController.swift in Sources */,
 				9C7897112748583100BE9C99 /* CollectionViewCell.swift in Sources */,
