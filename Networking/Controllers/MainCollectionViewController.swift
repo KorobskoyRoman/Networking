@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 enum Actions: String, CaseIterable {
     
@@ -14,6 +15,7 @@ enum Actions: String, CaseIterable {
     case post = "POST"
     case ourCourses = "Курсы"
     case uploadImage = "Выгрузить картинку"
+    case downloadFile = "Загрузить файл"
 }
 
 private let reuseIdentifier = "Cell"
@@ -23,6 +25,64 @@ private let uploadImage = "https://api.imgur.com/3/image"
 class MainCollectionViewController: UICollectionViewController {
 
     let actions = Actions.allCases //возвращаем массив перечисления
+    private var alert: UIAlertController!
+    private let dataProvider = DataProvider()
+    private var filePath: String?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        registerForNotification()
+        
+        dataProvider.fileLocation = { location in
+            
+            //save file
+            print("Загрузка завершена! Расположение файла: \(location.absoluteString)")
+            self.filePath = location.absoluteString
+            self.alert.dismiss(animated: false, completion: nil)
+            self.postNotification()
+        }
+    }
+    
+    private func showAlert() {
+        
+        alert = UIAlertController(title: "Загрузка...", message: "0%", preferredStyle: .alert)
+        
+        let height = NSLayoutConstraint(item: alert.view,
+                                        attribute: .height,
+                                        relatedBy: .equal,
+                                        toItem: nil,
+                                        attribute: .notAnAttribute,
+                                        multiplier: 0,
+                                        constant: 170)
+        alert.view.addConstraint(height)
+        
+        let cancelAction = UIAlertAction(title: "Отмена", style: .destructive) { (action) in
+            self.dataProvider.stopDownload()
+        }
+        
+        alert.addAction(cancelAction)
+        present(alert, animated: true) { [self] in
+            
+            let size = CGSize(width: 40, height: 40)
+            let point = CGPoint(x: self.alert.view.frame.width / 2 - size.width / 2, y: self.alert.view.frame.height / 2 - size.height / 2) //размещаем по центру
+            
+            let activityIndicator = UIActivityIndicatorView(frame: CGRect(origin: point, size: size))
+            activityIndicator.color = .gray
+            activityIndicator.startAnimating()
+            
+            let progressView = UIProgressView(frame: CGRect(x: 0, y: self.alert.view.frame.height - 44, width: self.alert.view.frame.width, height: 3))
+            progressView.tintColor = .blue
+            
+            self.dataProvider.onProgress = { (progress) in
+                progressView.progress = Float(progress)
+                self.alert.message = String(Int(progress * 100)) + "%"
+            }
+            
+            self.alert.view.addSubview(activityIndicator)
+            self.alert.view.addSubview(progressView)
+        }
+    }
 
     // MARK: UICollectionViewDataSource
 
@@ -54,6 +114,27 @@ class MainCollectionViewController: UICollectionViewController {
             performSegue(withIdentifier: "OurCourses", sender: self)
         case .uploadImage:
             NetworkManager.uploadImage(url: uploadImage)
+        case .downloadFile:
+            showAlert()
+            dataProvider.startDownload()
         }
+    }
+}
+
+extension MainCollectionViewController {
+    private func registerForNotification() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { _, _ in
+        }
+    }
+    
+    private func postNotification() {
+        let content = UNMutableNotificationContent()
+        content.title = "Загрузка завершена!"
+        content.body = "В фоновом режиме была завершена загрузка файла. Расположение: \(filePath!)"
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
+        
+        let request = UNNotificationRequest(identifier: "TransferComplete", content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
 }
