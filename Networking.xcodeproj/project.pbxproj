@@ -23,9 +23,13 @@
 		9C7897142748610600BE9C99 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7897132748610600BE9C99 /* NetworkManager.swift */; };
 		9C789716274A887A00BE9C99 /* ImageProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C789715274A887A00BE9C99 /* ImageProperties.swift */; };
 		9C789718274A8CD500BE9C99 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C789717274A8CD500BE9C99 /* DataProvider.swift */; };
+		9C78971A274BD95000BE9C99 /* AlamofireNetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C789719274BD95000BE9C99 /* AlamofireNetworkRequest.swift */; };
+		D32BFA68FA4D5A3572BEE083 /* Pods_Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77C2FC7969644439D311E4E4 /* Pods_Networking.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3E19640C01C077CA5B0090B1 /* Pods-Networking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Networking.debug.xcconfig"; path = "Target Support Files/Pods-Networking/Pods-Networking.debug.xcconfig"; sourceTree = "<group>"; };
+		77C2FC7969644439D311E4E4 /* Pods_Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C7896E6274818F900BE9C99 /* Networking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Networking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C7896E9274818F900BE9C99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9C7896EB274818F900BE9C99 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,6 +48,8 @@
 		9C7897132748610600BE9C99 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		9C789715274A887A00BE9C99 /* ImageProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProperties.swift; sourceTree = "<group>"; };
 		9C789717274A8CD500BE9C99 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		9C789719274BD95000BE9C99 /* AlamofireNetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireNetworkRequest.swift; sourceTree = "<group>"; };
+		CA131DB00C509C916F38F17F /* Pods-Networking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Networking.release.xcconfig"; path = "Target Support Files/Pods-Networking/Pods-Networking.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,17 +57,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D32BFA68FA4D5A3572BEE083 /* Pods_Networking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0FDF9C10C225F98D0D8B6FA7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3E19640C01C077CA5B0090B1 /* Pods-Networking.debug.xcconfig */,
+				CA131DB00C509C916F38F17F /* Pods-Networking.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		815C1E88BF3B1822294F1014 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				77C2FC7969644439D311E4E4 /* Pods_Networking.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9C7896DD274818F900BE9C99 = {
 			isa = PBXGroup;
 			children = (
 				9C7896E8274818F900BE9C99 /* Networking */,
 				9C7896E7274818F900BE9C99 /* Products */,
+				0FDF9C10C225F98D0D8B6FA7 /* Pods */,
+				815C1E88BF3B1822294F1014 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -141,6 +168,7 @@
 			children = (
 				9C7897132748610600BE9C99 /* NetworkManager.swift */,
 				9C789717274A8CD500BE9C99 /* DataProvider.swift */,
+				9C789719274BD95000BE9C99 /* AlamofireNetworkRequest.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -152,9 +180,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9C7896FA274818FB00BE9C99 /* Build configuration list for PBXNativeTarget "Networking" */;
 			buildPhases = (
+				20918C147BFB701E06555765 /* [CP] Check Pods Manifest.lock */,
 				9C7896E2274818F900BE9C99 /* Sources */,
 				9C7896E3274818F900BE9C99 /* Frameworks */,
 				9C7896E4274818F900BE9C99 /* Resources */,
+				8326346E1E956557A07C62BD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -211,6 +241,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		20918C147BFB701E06555765 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Networking-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8326346E1E956557A07C62BD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Networking/Pods-Networking-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Networking/Pods-Networking-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Networking/Pods-Networking-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9C7896E2274818F900BE9C99 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -223,6 +295,7 @@
 				9C78970A27483B9000BE9C99 /* WebsiteDescription.swift in Sources */,
 				9C78970D274840C200BE9C99 /* TableViewCell.swift in Sources */,
 				9C7897062748341F00BE9C99 /* WebViewController.swift in Sources */,
+				9C78971A274BD95000BE9C99 /* AlamofireNetworkRequest.swift in Sources */,
 				9C7896EA274818F900BE9C99 /* AppDelegate.swift in Sources */,
 				9C789716274A887A00BE9C99 /* ImageProperties.swift in Sources */,
 				9C7896EC274818F900BE9C99 /* SceneDelegate.swift in Sources */,
@@ -372,6 +445,7 @@
 		};
 		9C7896FB274818FB00BE9C99 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E19640C01C077CA5B0090B1 /* Pods-Networking.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -400,6 +474,7 @@
 		};
 		9C7896FC274818FB00BE9C99 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA131DB00C509C916F38F17F /* Pods-Networking.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

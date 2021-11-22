@@ -16,14 +16,17 @@ class CoursesViewController: UITableViewController {
     
     @IBOutlet var tableView1: UITableView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        fetchData()
-    }
-    
     func fetchData() {
         NetworkManager.fetchData(url: url) { courses in
+            self.courses = courses
+            DispatchQueue.main.async {
+                self.tableView1.reloadData()
+            }
+        }
+    }
+    
+    func fetchDataWithAlamofire() {
+        AlamofireNetworkRequest.sendRequest(url: url) { courses in
             self.courses = courses
             DispatchQueue.main.async {
                 self.tableView1.reloadData()

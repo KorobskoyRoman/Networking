@@ -16,11 +16,17 @@ enum Actions: String, CaseIterable {
     case ourCourses = "Курсы"
     case uploadImage = "Выгрузить картинку"
     case downloadFile = "Загрузить файл"
+    case ourCoursesAlamofire = "Курсы (Alamofire)"
+    case responseData = "responseData"
+    case responseString = "responseString"
+    case response = "response"
+    case downloadLargeImage = "Загрузка большой картинки"
 }
 
 private let reuseIdentifier = "Cell"
 private let url = "https://jsonplaceholder.typicode.com/posts"
 private let uploadImage = "https://api.imgur.com/3/image"
+private let swiftbookApi = "https://swiftbook.ru//wp-content/uploads/api/api_courses"
 
 class MainCollectionViewController: UICollectionViewController {
 
@@ -48,7 +54,7 @@ class MainCollectionViewController: UICollectionViewController {
         
         alert = UIAlertController(title: "Загрузка...", message: "0%", preferredStyle: .alert)
         
-        let height = NSLayoutConstraint(item: alert.view,
+        let height = NSLayoutConstraint(item: alert.view!,
                                         attribute: .height,
                                         relatedBy: .equal,
                                         toItem: nil,
@@ -117,6 +123,38 @@ class MainCollectionViewController: UICollectionViewController {
         case .downloadFile:
             showAlert()
             dataProvider.startDownload()
+        case .ourCoursesAlamofire:
+            performSegue(withIdentifier: "OurCoursesWithAlamofire", sender: self)
+        case .responseData:
+            performSegue(withIdentifier: "ResponseData", sender: self)
+            AlamofireNetworkRequest.responseData(url: swiftbookApi)
+        case .responseString:
+            AlamofireNetworkRequest.responseString(url: swiftbookApi)
+        case .response:
+            AlamofireNetworkRequest.response(url: swiftbookApi)
+        case .downloadLargeImage:
+            performSegue(withIdentifier: "LargeImage", sender: self)
+        }
+    }
+    
+    //MARK: Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let coursesVC = segue.destination as? CoursesViewController
+        let imageVC = segue.destination as? ImageViewController
+        
+        switch segue.identifier {
+        case "OurCourses":
+            coursesVC?.fetchData()
+        case "OurCoursesWithAlamofire":
+            coursesVC?.fetchDataWithAlamofire()
+        case "ShowImage":
+            imageVC?.fetchImage()
+        case "ResponseData":
+            imageVC?.fetchDataWithAlamofire()
+        case "LargeImage":
+            imageVC?.downloadImageWithProgress()
+        default:
+            break
         }
     }
 }
