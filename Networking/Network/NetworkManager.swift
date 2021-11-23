@@ -95,7 +95,7 @@ class NetworkManager {
     
     static func uploadImage(url: String) {
         let image = UIImage(named: "img")!
-        let httpHeaders = ["Authorization" : "Client-ID e11510a9e57ce86"]
+        let httpHeaders = ["Authorization" : "Client-ID e11510a9e57ce86"] //данные из imgur
         guard let imageProperties = ImageProperties(withImage: image, forKey: "image") else { return }
         
         guard let url = URL(string: url) else { return }

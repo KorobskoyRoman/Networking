@@ -95,4 +95,60 @@ class AlamofireNetworkRequest {
             }
         }
     }
+    
+    static func postRequest(url: String, completion: @escaping(_ courses: [Course]) -> ()) {
+        guard let url = URL(string: url) else { return }
+        
+        let userData: [String: Any] = [ "name" : "Pudge",
+                                        "link" : "https://dota2.fandom.com/ru/wiki/Pudge",
+                                        "imageUrl" : "https://static.wikia.nocookie.net/dota2_gamepedia/images/c/c0/Pudge_icon.png/revision/latest/scale-to-width-down/300?cb=20160411211506"]
+        AF.request(url, method: .post, parameters: userData).responseJSON { responseJSON in
+            guard let statusCode = responseJSON.response?.statusCode else { return }
+            print("status code: ", statusCode)
+            
+            switch responseJSON.result {
+            case .success(let value):
+                print(value)
+                guard
+                    let jsonObject = value as? [String: Any],
+                        let course = Course(json: jsonObject)
+                else { return }
+                
+                var courses = [Course]()
+                courses.append(course)
+                completion(courses)
+                
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    static func putRequest(url: String, completion: @escaping(_ courses: [Course]) -> ()) {
+        guard let url = URL(string: url) else { return }
+        
+        let userData: [String: Any] = [ "name" : "Pudge with Alamofire",
+                                        "link" : "https://dota2.fandom.com/ru/wiki/Pudge",
+                                        "imageUrl" : "https://static.wikia.nocookie.net/dota2_gamepedia/images/c/c0/Pudge_icon.png/revision/latest/scale-to-width-down/300?cb=20160411211506"]
+        AF.request(url, method: .put, parameters: userData).responseJSON { responseJSON in
+            guard let statusCode = responseJSON.response?.statusCode else { return }
+            print("status code: ", statusCode)
+            
+            switch responseJSON.result {
+            case .success(let value):
+                print(value)
+                guard
+                    let jsonObject = value as? [String: Any],
+                        let course = Course(json: jsonObject)
+                else { return }
+                
+                var courses = [Course]()
+                courses.append(course)
+                completion(courses)
+                
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 }

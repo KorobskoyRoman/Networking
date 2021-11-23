@@ -13,6 +13,8 @@ class CoursesViewController: UITableViewController {
     private var courses = [Course]()
     private var courseName: String?
     private var courseURL: String?
+    private let postRequestUrl = "https://jsonplaceholder.typicode.com/posts"
+    private let putRequestUrl = "https://jsonplaceholder.typicode.com/posts/1"
     
     @IBOutlet var tableView1: UITableView!
     
@@ -27,6 +29,26 @@ class CoursesViewController: UITableViewController {
     
     func fetchDataWithAlamofire() {
         AlamofireNetworkRequest.sendRequest(url: url) { courses in
+            self.courses = courses
+            DispatchQueue.main.async {
+                self.tableView1.reloadData()
+            }
+        }
+    }
+    
+    func postRequest() {
+        
+        AlamofireNetworkRequest.postRequest(url: postRequestUrl) { courses in
+            
+            self.courses = courses
+            DispatchQueue.main.async {
+                self.tableView1.reloadData()
+            }
+        }
+    }
+    
+    func putRequest() {
+        AlamofireNetworkRequest.putRequest(url: putRequestUrl) { courses in
             self.courses = courses
             DispatchQueue.main.async {
                 self.tableView1.reloadData()
